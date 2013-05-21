@@ -104,7 +104,6 @@ function output(movie, image, last_item) {
 	      console.log("last item");
 	      myMovieTable_string += "</tr>";
 	      $('#myMoviesTable').append(myMovieTable_string);
-	      console.log($('#myMoviesTable').html());
 	}
 	pic_index++;
 	
