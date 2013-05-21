@@ -14,9 +14,8 @@ function facebookLogin() {
 
 		FB.Event.subscribe('auth.authResponseChange', function(response) {
 			if (response.status === 'connected') {
-				//getMyMovies();
-				//getFriendMovies();
-				getMovieCover("Fight Club");
+				getMyMovies();
+				getFriendMovies();
 			} else if (response.status === 'not_authorized') {
 				FB.login({
 					scope : 'user_likes,friends_likes,read_friendlists'
@@ -51,11 +50,11 @@ function getMyMovies() {
 	}, function(data) {
 		var obj = data.data;
 		var movies_string = obj[0].movies;
-		
+
 		var movies = movies_string.split(', ');
-		
+
 		for (var i = 0; i < movies.length; i++) {
-			$('#myMoviesTable').append("<tr><td>Cover</td><td>" + movies[i] + "</td></tr>");
+			getMovieCover(movies[i]);
 		};
 	});
 };
@@ -73,7 +72,6 @@ function getFriendMovies() {
 			// check if the user has set no hometown in his profile
 			if (obj[key].movies == "") {
 				return;
-				
 			} else {
 				movies_string = obj[key].movies;
 				movies = movies_string.split(', ');
@@ -87,16 +85,23 @@ function getFriendMovies() {
 	});
 };
 
-function output(result){
-	console.log(result);
-}
+function output(movie, image) {
+	console.log(movie + " " + image);
+	$('#myMoviesTable').append("<tr><td><img src=" + image + "></td><td>" + movie + "</td></tr>");
+};
 
-function getMovieCover(movie){
+function getMovieCover(movie) {
 	var api_key = "bcc2dc80864852143b71c43ccdc9df30";
 	var url = "http://api.themoviedb.org/3/search/movie?query=" + movie + "&api_key=" + api_key;
 	$.getJSON(url, function(data) {
 		var obj = data;
-		image = "http://cf2.imgobject.com/t/p/w500" +  obj.results[0].poster_path;
-		output(image);
+		if (obj.results[0] == undefined) {
+			return;
+		} else if (obj.results[0].poster_path == null){
+			return;
+		} else {
+			image = "http://cf2.imgobject.com/t/p/w500" + obj.results[0].poster_path;
+			output(movie, image);
+		}
 	});
 };
