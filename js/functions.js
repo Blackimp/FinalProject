@@ -1,4 +1,6 @@
 var image = "";
+var pic_index = 0;
+var myMovieTable_string = '';
 
 // setup the facebook application and load the facebook SDK
 function facebookLogin() {
@@ -90,24 +92,22 @@ function getFriendMovies() {
 	});
 };
 
-var pic_index = 0;
-var myMovieTable_string = '';
+
 function output(movie, image, last_item) {
-      if(pic_index == 0 || (pic_index != 1 && pic_index % 5 == 1)) {
+      if(pic_index == 0) {
             myMovieTable_string += "<tr>";
-            console.log('Neue Zeile ' + pic_index);
       } else if(pic_index % 5 == 0) {
-            myMovieTable_string += "</tr>";
-            console.log('Umbruch ' + pic_index);
+            myMovieTable_string += "</tr><tr>";
       }
 	myMovieTable_string += "<td><img src='" + image + "' alt='" + movie + "'></td>";
-	pic_index++;
 	if(last_item == 1) {
 	      console.log("last item");
 	      myMovieTable_string += "</tr>";
 	      $('#myMoviesTable').append(myMovieTable_string);
 	      console.log($('#myMoviesTable').html());
 	}
+	pic_index++;
+	
 };
 
 function getMovieCover(movie, last_item) {
