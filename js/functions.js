@@ -2,31 +2,7 @@ var image = "";
 var pic_index = 0;
 var content_table = '<table>';
 
-/*
-$(document).ready(function() {
 
-	$(function() {
-		$("input[type=submit], a, button").button().click(function(event) {
-			event.preventDefault();
-		});
-	});
-
-	$('#myMovies').click(function() {
-		$("#myMoviesTable").empty();
-		getMyMovies();
-	});
-
-	$('#friendsMovies').click(function() {
-		$("#myMoviesTable").empty();
-		getFriendMovies();
-	});
-
-	$('#recommended').click(function() {
-		// to implement
-	});
-
-});
-*/
 // setup the facebook application and load the facebook SDK
 function facebookLogin() {
 	// initialize
@@ -159,17 +135,15 @@ function output(movie, image, last_item) {
 	} else if (pic_index % 5 == 0) {
 		content_table += "</tr><tr>";
 	}
-	content_table += "<td><img src='" + image + "' alt='" + movie + "'></td>";
+	content_table += "<td><img src='" + image + "' alt='" + movie + "' onmouseover='showPic(\""+image+"\");'></td>";
 	if (last_item == 1) {
 		content_table += "</tr></table>";
 		document.getElementById('content').innerHTML = content_table;
 	}
 	pic_index++;
-
 };
 
 function getMovieCover(movie, last_item) {
-	console.log(movie);
 	var api_key = "bcc2dc80864852143b71c43ccdc9df30";
 	var url = "http://api.themoviedb.org/3/search/movie?query=" + movie + "&api_key=" + api_key;
 	$.getJSON(url, function(data) {
@@ -188,4 +162,8 @@ function getMovieCover(movie, last_item) {
 function clearContentTable() {
       document.getElementById("content").innerHTML = '';
       content_table = '<table>';
+}
+
+function showPic(image) {
+      document.getElementById('pic_screen').innerHTML = "<img src="+image+">";
 }

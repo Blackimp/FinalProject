@@ -51,7 +51,7 @@ div#container {
 }
 
 div#content_wrapper {
-  width: 800px;
+  width: 1050px;
   height:100%;
   min-height: 100%;
   margin-left:auto;
@@ -68,7 +68,7 @@ div#content_wrapper {
 }
 
 #menu {
-      width:250px;
+      width:150px;
       height:300px;
       float:left;
       border-right:1px solid #343434;
@@ -101,8 +101,12 @@ div#content_wrapper {
 }
 
 #content {
-      float:right;
-      width:500px;
+      float:left;
+      width:530px;
+      height:450px;
+      margin-left:20px;
+      margin-right:20px; 
+      overflow:scroll;
 }
 
 div#content a {
@@ -130,5 +134,14 @@ div#content a:hover {
 
 #content table img {
       width:100px;
+}
+
+#pic_screen {
+      width:300px;
+      float: right;
+}
+
+#pic_screen img {
+      width:300px;
 }
 
