@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Final Project</title>
+		<title>fmrs</title>
 		<link rel="stylesheet" href="css/style.css"/>
 		<link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.3.custom.min.css"/>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -14,20 +14,33 @@
 		facebookLogin();
 	</script>
 	<body>
+<<<<<<< HEAD
 		<div id="fb-root"></div>
 		<div id="container">
 			<div id="header">
 				Facebook Movie Recommendations julian
+=======
+	      <div id="header">
+	            <div id="header_content">
+			      <span style="color:#5393d5">facebook</span><br />
+			       movie recommendations<br />
+			        service
+>>>>>>> 0699ecb6a2712d4e06104ddd8e49044eb97ee77e
 			</div>
+		</div>
+		<div id="content_wrapper">
+			<div id="fb-root"></div>
+                  <div id="content">	
 			
-			<fb:login-button id="facebookButton" scope="user_likes,friends_likes,read_friendlists" show-faces="true"></fb:login-button>
-			<div id = "myMovies">
-				<table id ="myMoviesTable" border="1">
-					<tr>
-						<th>Cover</th>
-						<th>Name</th>
-					</tr>
-				</table>
+                        <fb:login-button id="facebookButton" scope="user_likes,friends_likes,read_friendlists" show-faces="true"></fb:login-button>
+                        <div id = "myMovies">
+                              <table id ="myMoviesTable" border="1">
+                                    <tr>
+                                          <th>Cover</th>
+                                          <th>Name</th>
+                                    </tr>
+                              </table>
+                        </div>
 			</div>
 		</div>
 	</body>
