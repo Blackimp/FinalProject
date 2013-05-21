@@ -4,13 +4,19 @@ var myMovieTable_string = '';
 
 $(document).ready(function() {
 
+	$(function() {
+		$("input[type=submit], a, button").button().click(function(event) {
+			event.preventDefault();
+		});
+	});
+
 	$('#myMovies').click(function() {
-		$("#myMoviesTable tr").empty();
+		$("#myMoviesTable").empty();
 		getMyMovies();
 	});
 
 	$('#friendsMovies').click(function() {
-		$("#myMoviesTable tr").empty();
+		$("#myMoviesTable").empty();
 		getFriendMovies();
 	});
 
