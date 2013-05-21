@@ -100,3 +100,7 @@ function getMovieCover(movie){
 		output(image);
 	});
 };
+
+function scopascopa() {
+      console.log("SCOPA!!!");
+}
