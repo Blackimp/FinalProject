@@ -16,8 +16,7 @@ function facebookLogin() {
 			if (response.status === 'connected') {
 			      $('#facebookButton').hide();
 				getMyMovies();
-				//getFriendMovies();
-				getMovieCover("Fight Club");
+				getFriendMovies();
 			} else if (response.status === 'not_authorized') {
 				FB.login({
 					scope : 'user_likes,friends_likes,read_friendlists'
@@ -56,7 +55,11 @@ function getMyMovies() {
 		var movies = movies_string.split(', ');
 
 		for (var i = 0; i < movies.length; i++) {
-			getMovieCover(movies[i]);
+		      if(i == movies.length-1) {
+				getMovieCover(movies[i],1);
+		      } else {
+		      	getMovieCover(movies[i],0);
+		      }
 		};
 	});
 };
@@ -87,12 +90,27 @@ function getFriendMovies() {
 	});
 };
 
-function output(movie, image) {
-	console.log(movie + " " + image);
-	$('#myMoviesTable').append("<tr><td><img src=" + image + "></td><td>" + movie + "</td></tr>");
+var pic_index = 0;
+var myMovieTable_string = '';
+function output(movie, image, last_item) {
+      if(pic_index == 0 || (pic_index != 1 && pic_index % 5 == 1)) {
+            myMovieTable_string += "<tr>";
+            console.log('Neue Zeile ' + pic_index);
+      } else if(pic_index % 5 == 0) {
+            myMovieTable_string += "</tr>";
+            console.log('Umbruch ' + pic_index);
+      }
+	myMovieTable_string += "<td><img src='" + image + "' alt='" + movie + "'></td>";
+	pic_index++;
+	if(last_item == 1) {
+	      console.log("last item");
+	      myMovieTable_string += "</tr>";
+	      $('#myMoviesTable').append(myMovieTable_string);
+	      console.log($('#myMoviesTable').html());
+	}
 };
 
-function getMovieCover(movie) {
+function getMovieCover(movie, last_item) {
 	var api_key = "bcc2dc80864852143b71c43ccdc9df30";
 	var url = "http://api.themoviedb.org/3/search/movie?query=" + movie + "&api_key=" + api_key;
 	$.getJSON(url, function(data) {
@@ -103,7 +121,7 @@ function getMovieCover(movie) {
 			return;
 		} else {
 			image = "http://cf2.imgobject.com/t/p/w500" + obj.results[0].poster_path;
-			output(movie, image);
+			output(movie, image, last_item);
 		}
 	});
 };
