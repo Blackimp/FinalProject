@@ -100,10 +100,3 @@ function getMovieCover(movie){
 		output(image);
 	});
 };
-
-<<<<<<< HEAD
-function masterFunction(){
-	
-};
-=======
->>>>>>> 85dc8545b35c9eda94389cbc60115e7bfac99823
