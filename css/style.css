@@ -123,12 +123,12 @@ div#content a:hover {
 	text-decoration: none;
 }
 
-#myMoviesTable {
+#content table {
       border:0px solid #000;
       width:400px;
 }
 
-#myMoviesTable img {
+#content table img {
       width:100px;
 }
 

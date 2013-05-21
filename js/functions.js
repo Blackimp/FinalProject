@@ -1,7 +1,8 @@
 var image = "";
 var pic_index = 0;
-var myMovieTable_string = '';
+var content_table = '<table>';
 
+/*
 $(document).ready(function() {
 
 	$(function() {
@@ -25,7 +26,7 @@ $(document).ready(function() {
 	});
 
 });
-
+*/
 // setup the facebook application and load the facebook SDK
 function facebookLogin() {
 	// initialize
@@ -68,6 +69,8 @@ function facebookLogin() {
 };
 
 function getMyMovies() {
+      clearContentTable();
+
 	var query = 'SELECT movies FROM user WHERE uid = me()';
 	// call the Facebook API using the fql
 	FB.api('fql', {
@@ -89,6 +92,8 @@ function getMyMovies() {
 };
 
 function getFriendMovies() {
+      clearContentTable();
+      
 	var query = 'SELECT movies, name FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me())';
 	FB.api('fql', {
 		q : query
@@ -150,14 +155,14 @@ function getFriendMovies() {
 
 function output(movie, image, last_item) {
 	if (pic_index == 0) {
-		myMovieTable_string += "<tr>";
+		content_table += "<tr>";
 	} else if (pic_index % 5 == 0) {
-		myMovieTable_string += "</tr><tr>";
+		content_table += "</tr><tr>";
 	}
-	myMovieTable_string += "<td><img src='" + image + "' alt='" + movie + "'></td>";
+	content_table += "<td><img src='" + image + "' alt='" + movie + "'></td>";
 	if (last_item == 1) {
-		myMovieTable_string += "</tr>";
-		$('#myMoviesTable').append(myMovieTable_string);
+		content_table += "</tr></table>";
+		document.getElementById('content').innerHTML = content_table;
 	}
 	pic_index++;
 
@@ -179,3 +184,8 @@ function getMovieCover(movie, last_item) {
 		}
 	});
 };
+
+function clearContentTable() {
+      document.getElementById("content").innerHTML = '';
+      content_table = '<table>';
+}
