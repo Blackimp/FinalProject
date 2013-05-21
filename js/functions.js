@@ -100,3 +100,7 @@ function getMovieCover(movie){
 		output(image);
 	});
 };
+
+function masterFunction(){
+	
+};
