@@ -83,3 +83,7 @@ function getFriendMovies() {
 		});
 	});
 };
+
+function getMovieCover(movie){
+	// http://www.freecovers.net/api/search/
+};
