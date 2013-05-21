@@ -60,16 +60,25 @@ div#content_wrapper {
   padding: 20px;
 }
 
+#fb_login {
+      width:75px;
+      margin-left:auto;
+      margin-right:auto;
+      margin-bottom:20px;
+}
+
 #menu {
-      width:170px;
+      width:250px;
       height:300px;
       float:left;
       border-right:1px solid #343434;
       padding:5px;
+      text-align:right;
 }
 
 #menu ul {
       list-style-type: none;
+      margin-bottom:20px;
 }
 
 #menu a {
@@ -93,12 +102,11 @@ div#content_wrapper {
 
 #content {
       float:right;
-      width:600px;
+      width:500px;
 }
 
 div#content a {
 }
-
 
 div#content a:link {
 	color: #5393d5;
@@ -114,3 +122,8 @@ div#content a:hover {
 	color: #343434;
 	text-decoration: none;
 }
+
+#myMoviesTable {
+      border:0px solid #000;
+}
+

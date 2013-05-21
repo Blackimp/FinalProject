@@ -14,7 +14,8 @@ function facebookLogin() {
 
 		FB.Event.subscribe('auth.authResponseChange', function(response) {
 			if (response.status === 'connected') {
-				//getMyMovies();
+			      $('#facebookButton').hide();
+				getMyMovies();
 				//getFriendMovies();
 				getMovieCover("Fight Club");
 			} else if (response.status === 'not_authorized') {
