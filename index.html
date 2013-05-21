@@ -15,32 +15,36 @@
 	</script>
 	<body>
 		<div id="fb-root"></div>
+	      <div id="header">
+	            <div id="header_content">
+			      <span style="color:#5393d5">facebook</span><br />
+			       movie recommendation<br />
+			        service
+			</div>
+		</div>
 		<div id="container">
-			<div id="header">
-				Facebook Movie Recommendation
-				<div id="header">
-					<div id="header_content">
-						<span style="color:#5393d5">facebook</span>
-						<br />
-						movie recommendations
-						<br />
-						service
-					</div>
-				</div>
-				<div id="content_wrapper">
-					<div id="fb-root"></div>
-					<div id="content">
-
-						<fb:login-button id="facebookButton" scope="user_likes,friends_likes,read_friendlists" show-faces="true"></fb:login-button>
-						<div id = "myMovies">
-							<table id ="myMoviesTable" border="1">
-								<tr>
-									<th>Cover</th>
-									<th>Name</th>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
+		      <div id="content_wrapper">
+                        <div id="menu">
+                              <ul>
+                                    <li><a href="index.html">recommended videos</a></li>
+                                    <li><a href="index.html">videos I like</a></li>
+                                    <li><a href="index.html">videos my friends like</a></li>
+                              </ul>
+                        </div>
+			
+                  	<div id="content">
+			
+                              <fb:login-button id="facebookButton" scope="user_likes,friends_likes,read_friendlists" show-faces="true"></fb:login-button>
+                              <div id = "myMovies">
+                                    <table id ="myMoviesTable" border="1">
+                                          <tr>
+                                                <th>Cover</th>
+                                                <th>Name</th>
+                                          </tr>
+                                    </table>
+                              </div>
+			      </div>
+			</div>
+		</div>
 	</body>
 </html>
