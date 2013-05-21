@@ -70,6 +70,7 @@ function getFriendMovies() {
 			// check if the user has set no hometown in his profile
 			if (obj[key].movies == "") {
 				return;
+				
 			} else {
 				movies_string = obj[key].movies;
 				movies = movies_string.split(', ');
