@@ -1,3 +1,5 @@
+var image = "";
+
 // setup the facebook application and load the facebook SDK
 function facebookLogin() {
 	// initialize
@@ -12,8 +14,9 @@ function facebookLogin() {
 
 		FB.Event.subscribe('auth.authResponseChange', function(response) {
 			if (response.status === 'connected') {
-				getMyMovies();
-				getFriendMovies();
+				//getMyMovies();
+				//getFriendMovies();
+				getMovieCover("Fight Club");
 			} else if (response.status === 'not_authorized') {
 				FB.login({
 					scope : 'user_likes,friends_likes,read_friendlists'
@@ -81,5 +84,19 @@ function getFriendMovies() {
 				}
 			}
 		});
+	});
+};
+
+function output(result){
+	console.log(result);
+}
+
+function getMovieCover(movie){
+	var api_key = "bcc2dc80864852143b71c43ccdc9df30";
+	var url = "http://api.themoviedb.org/3/search/movie?query=" + movie + "&api_key=" + api_key;
+	$.getJSON(url, function(data) {
+		var obj = data;
+		image = "http://cf2.imgobject.com/t/p/w500" +  obj.results[0].poster_path;
+		output(image);
 	});
 };
