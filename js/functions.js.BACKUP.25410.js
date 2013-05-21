@@ -14,10 +14,15 @@ function facebookLogin() {
 
 		FB.Event.subscribe('auth.authResponseChange', function(response) {
 			if (response.status === 'connected') {
+<<<<<<< HEAD
 			      $('#facebookButton').hide();
 				getMyMovies();
 				//getFriendMovies();
 				getMovieCover("Fight Club");
+=======
+				getMyMovies();
+				getFriendMovies();
+>>>>>>> master
 			} else if (response.status === 'not_authorized') {
 				FB.login({
 					scope : 'user_likes,friends_likes,read_friendlists'
