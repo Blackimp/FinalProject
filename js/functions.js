@@ -101,6 +101,9 @@ function getMovieCover(movie){
 	});
 };
 
+<<<<<<< HEAD
 function masterFunction(){
 	
 };
+=======
+>>>>>>> 85dc8545b35c9eda94389cbc60115e7bfac99823
