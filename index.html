@@ -13,35 +13,44 @@
 		facebookLogin();
 	</script>
 	<body>
-		
+
 		<div id="fb-root"></div>
-	      <div id="header">
-	            <div id="header_content">
-			      <span style="color:#5393d5">facebook</span><br />
-			       movie recommendation<br />
-			        service
+		<div id="header">
+			<div id="header_content">
+				<span style="color:#5393d5">facebook</span>
+				<br />
+				movie recommendation
+				<br />
+				service
 			</div>
 		</div>
 		<div id="container">
-		      <div id="content_wrapper">
-		            <div id="fb_login">  
-		                  <fb:login-button id="facebookButton" scope="user_likes,friends_likes,read_friendlists" show-faces="false">
-		                  </fb:login-button>
-		            </div>
-                        <div id="menu">
-                              <ul>
-                                    <li><a href="index.html">recommended movies</a></li>
-                                    <li><a href="index.html">movies I like</a></li>
-                                    <li><a href="index.html">movies my friends like</a></li>
-                              </ul>
-                        </div>
-			
-                  	<div id="content">
-                              <div id = "myMovies">
-                                    <table id ="myMoviesTable">
-                                    </table>
-                              </div>
-			      </div>
+			<div id="content_wrapper">
+				<div id="fb_login">
+					<fb:login-button id="facebookButton" scope="user_likes,friends_likes,read_friendlists" show-faces="false"></fb:login-button>
+				</div>
+				<div id="menu">
+					<ul>
+						<li>
+							<input type="submit" id="recommended" value="recommended movies">
+							<!--<a href="index.html" id="recommended">recommended movies</a>-->
+						</li>
+						<li>
+							<input type="submit" id="myMovies" value="movies I like">
+							<!--<a href="index.html" id="myMovies">movies I like</a>-->
+						</li>
+						<li>
+							<input type="submit" id="friendsMovies" value="movies my friends like">
+							<!--<a href="index.html" id="friendsMovies">movies my friends like</a>-->
+						</li>
+					</ul>
+				</div>
+
+				<div id="content">
+					<div id = "myMovies">
+						<table id ="myMoviesTable"></table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
