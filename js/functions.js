@@ -101,6 +101,3 @@ function getMovieCover(movie){
 	});
 };
 
-function scopascopa() {
-      console.log("SCOPA!!!");
-}
