@@ -27,9 +27,10 @@ div#header {
   margin: 0px;
   height: 115px;
   width: 100%;
-  background-color: #fff;
+  background-color: #ed9642;
   color:#343434;
   font-size:25px;
+  font-weight:bold;
 }
 
 div#header_content {
