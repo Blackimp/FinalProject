@@ -160,6 +160,7 @@ function getMovieCover(movie, last_item) {
 };
 
 function clearContentTable() {
+      pic_index = 0;
       document.getElementById("content").innerHTML = '';
       content_table = '<table>';
 }
