@@ -139,13 +139,6 @@ div#content a:hover {
       table-layout:fixed;
 }
 
-<<<<<<< HEAD
-=======
-#content table td {
-      width:100px !important;
-}
-
->>>>>>> kevin
 #content table img {
       width:100px;
       display:block;

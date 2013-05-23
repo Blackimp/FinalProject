@@ -1,3 +1,8 @@
+var image = '';
+var pic_index = 0;
+var init_content_table = '<table><colgroup><col width="100"><col width="100"><col width="100"><col width="100"><col width="100"></colgroup>';
+var content_table = init_content_table;
+
 function output(movie, image, last_item) {
 	if (pic_index == 0) {
 		content_table += "<tr>";
@@ -15,7 +20,7 @@ function output(movie, image, last_item) {
 function clearContentTable() {
 	pic_index = 0;
 	document.getElementById("content").innerHTML = '';
-	content_table = '<table>';
+	content_table = init_content_table;
 }
 
 function showPic(image) {
