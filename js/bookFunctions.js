@@ -75,7 +75,6 @@ function getFriendBooks() {
 
 		// take only the 20 most liked movies
 		var books_top20 = book_counts_sorted.slice(0, 20);
-
 		for ( i = 0; i < books_top20.length; i++) {
 			if (i == books_top20.length - 1) {
 				getBookCover(books_top20[i,i][0], 1, books_top20[i,i][1]);
@@ -98,7 +97,6 @@ function getBookCover(book, last_item, like_count) {
 			return;
 		} else {
 			var image = obj.items[0].volumeInfo.imageLinks.thumbnail;
-			console.log(image);
 			output(book, image, last_item, like_count);
 		}
 	});
