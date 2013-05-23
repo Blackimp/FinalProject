@@ -72,7 +72,7 @@ function getFriendMovies() {
 
 		// take only the 20 most liked movies
 		var movies_top20 = movie_counts_sorted.slice(0, 20);
-
+		
 		for ( i = 0; i < movies_top20.length; i++) {
 			if (i == movies_top20.length - 1) {
 				getMovieCover(movies_top20[i,i][0], 1);

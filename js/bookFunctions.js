@@ -30,7 +30,9 @@ function getBookCover(book, last_item) {
 
 	$.getJSON(url, function(data) {
 		var obj = data;
-
+		if (obj.totalitems == 0){
+			return;
+		};
 		var image = obj.items[0].volumeinfo.imageLinks.thumbnail;
 		console.log(image);
 		output(book, image, last_item);
