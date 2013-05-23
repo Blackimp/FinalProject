@@ -1,6 +1,7 @@
 var image = "";
 var pic_index = 0;
-var content_table = '<table>';
+var init_content_table = '<table><colgroup><col width="100"><col width="100"><col width="100"><col width="100"><col width="100"></colgroup>';
+var content_table = init_content_table;
 
 
 // setup the facebook application and load the facebook SDK
@@ -162,7 +163,7 @@ function getMovieCover(movie, last_item) {
 function clearContentTable() {
       pic_index = 0;
       document.getElementById("content").innerHTML = '';
-      content_table = '<table>';
+      content_table = init_content_table;
 }
 
 function showPic(image) {

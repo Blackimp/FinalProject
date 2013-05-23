@@ -82,8 +82,12 @@ div#content_wrapper {
       margin-bottom:20px;
 }
 
+.list_head {
+      font-weight:bold;
+      font-size:120%;
+}
+
 #menu a {
-      font-weight: bold;
 }
 
 #menu a:link {
@@ -130,11 +134,18 @@ div#content a:hover {
 
 #content table {
       border:0px solid #000;
-      width:400px;
+      width:500px;
+      padding:0px;
+      table-layout:fixed;
+}
+
+#content table td {
+      width:100px !important;
 }
 
 #content table img {
       width:100px;
+      display:block;
 }
 
 #pic_screen {
