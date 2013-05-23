@@ -145,13 +145,8 @@ div#content a:hover {
       display:block;
 }
 
-#pic_screen {
-      width:300px;
-      float: right;
-}
-
-#pic_screen img {
-      width:300px;
+#content table td {
+      text-align:center;
 }
 
 #pic_screen {
@@ -161,5 +156,23 @@ div#content a:hover {
 
 #pic_screen img {
       width:300px;
+}
+
+#pic_screen {
+      width:300px;
+      float: right;
+}
+
+#pic_screen img {
+      width:300px;
+}
+
+.like_count {
+      border:1px solid #fff;
+      width:100px;
+      color:#fff;
+      background-color:#343434;
+      border-top-left-radius: 20px;
+      border-top-right-radius:20px;
 }
 

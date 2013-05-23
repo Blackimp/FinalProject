@@ -11,7 +11,7 @@ function output(movie, image, like_count, last_item) {
 	}
 	content_table += "<td>";
 	if(like_count != -1) {
-	      content_table += like_count + "<br>";
+	      content_table += "<div class='like_count'>"+like_count + " likes</div>";
 	}
 	content_table += "<img src='" + image + "' alt='" + movie + "' onmouseover='showPic(\"" + image + "\");'></td>";
 	if (last_item == 1) {
