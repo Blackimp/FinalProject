@@ -21,6 +21,10 @@ function getMyBooks() {
 	});
 };
 
+function getFriendBooks(){
+	// has to be implemented
+};
+
 function getBookCover(book, last_item) {
 	var url = "https://www.googleapis.com/books/v1/volumes?q=name:" + book;
 

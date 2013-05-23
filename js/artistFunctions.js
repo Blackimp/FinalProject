@@ -21,6 +21,10 @@ function getMyArtists() {
 	});
 };
 
+function getFriendArtists(){
+	// has to be implemented
+};
+
 function getArtist(artist, last_item) {
 	var url = "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + artist + "&api_key=b15fbe5f05f68e2b62bbbe3f4242c303&format=json";
 
