@@ -8,7 +8,11 @@ function getMyBooks() {
 	}, function(data) {
 		var obj = data.data;
 		var books_string = obj[0].books;
-
+            if(books_string == "") {
+                  document.getElementById('content').innerHTML = no_content_table;
+                  return;
+            }
+                        
 		var books = books_string.split(', ');
 		for (var i = 0; i < books.length; i++) {
 			if (i == books.length - 1) {
