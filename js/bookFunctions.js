@@ -10,7 +10,7 @@ function getMyBooks() {
 		var books_string = obj[0].books;
 
 		var books = books_string.split(', ');
-
+		console.log(books);
 		for (var i = 0; i < books.length; i++) {
 			if (i == books.length - 1) {
 				getBookCover(books[i], 1);
@@ -21,6 +21,14 @@ function getMyBooks() {
 	});
 };
 
-function getBookCover(book, last_item){
-	// has to be implemented	
+function getBookCover(book, last_item) {
+	var url = "https://www.googleapis.com/books/v1/volumes?q=name:" + book;
+
+	$.getJSON(url, function(data) {
+		var obj = data;
+
+		var image = obj.items[0].volumeinfo.imageLinks.thumbnail;
+		console.log(image);
+		output(book, image, last_item);
+	});
 };

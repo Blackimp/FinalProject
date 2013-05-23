@@ -1,9 +1,3 @@
-var image = "";
-var pic_index = 0;
-var content_table = '<table>';
-
-
-
 function getMyMovies() {
 	clearContentTable();
 

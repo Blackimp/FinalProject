@@ -27,10 +27,15 @@ function getArtist(artist, last_item) {
 	$.getJSON(url, function(data) {
 		var obj = data.results;
 
-		// here is a problem with the JSON response, because a # is in the element tag before "text". This is why we have to work with a temp variable.
-		var tmp = obj.artistmatches.artist[0].image[2];
-		var image = tmp['#text'];
-
-		output(artist, image, last_item);
+		if (obj.artistmatches.artist == undefined) {
+			return;
+		} else if (obj.artistmatches.artist[0] == undefined) {
+			return;
+		} else {
+			// here is a problem with the JSON response, because a # is in the element tag before "text". This is why we have to work with a temp variable.
+			var tmp = obj.artistmatches.artist[0].image[3];
+			var image = tmp['#text'];
+			output(artist, image, last_item);
+		}
 	});
 };
