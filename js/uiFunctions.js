@@ -3,13 +3,17 @@ var pic_index = 0;
 var init_content_table = '<table><colgroup><col width="100"><col width="100"><col width="100"><col width="100"><col width="100"></colgroup>';
 var content_table = init_content_table;
 
-function output(movie, image, last_item) {
+function output(movie, image, like_count, last_item) {
 	if (pic_index == 0) {
 		content_table += "<tr>";
 	} else if (pic_index % 5 == 0) {
 		content_table += "</tr><tr>";
 	}
-	content_table += "<td><img src='" + image + "' alt='" + movie + "' onmouseover='showPic(\"" + image + "\");'></td>";
+	content_table += "<td>";
+	if(like_count != -1) {
+	      content_table += like_count + "<br>";
+	}
+	content_table += "<img src='" + image + "' alt='" + movie + "' onmouseover='showPic(\"" + image + "\");'></td>";
 	if (last_item == 1) {
 		content_table += "</tr></table>";
 		document.getElementById('content').innerHTML = content_table;

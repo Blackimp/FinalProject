@@ -13,9 +13,9 @@ function getMyMovies() {
 
 		for (var i = 0; i < movies.length; i++) {
 			if (i == movies.length - 1) {
-				getMovieCover(movies[i], 1);
+				getMovieCover(movies[i],-1, 1);
 			} else {
-				getMovieCover(movies[i], 0);
+				getMovieCover(movies[i],-1, 0);
 			}
 		};
 	});
@@ -75,15 +75,15 @@ function getFriendMovies() {
 		
 		for ( i = 0; i < movies_top20.length; i++) {
 			if (i == movies_top20.length - 1) {
-				getMovieCover(movies_top20[i,i][0], 1);
+				getMovieCover(movies_top20[i,i][0],movies_top20[i,i][1], 1);
 			} else {
-				getMovieCover(movies_top20[i,i][0], 0);
+				getMovieCover(movies_top20[i,i][0],movies_top20[i,i][1], 0);
 			}
 		};
 	});
 };
 
-function getMovieCover(movie, last_item) {
+function getMovieCover(movie,like_count, last_item) {
 	var api_key = "bcc2dc80864852143b71c43ccdc9df30";
 	var url = "http://api.themoviedb.org/3/search/movie?query=" + movie + "&api_key=" + api_key;
 	$.getJSON(url, function(data) {
@@ -94,7 +94,7 @@ function getMovieCover(movie, last_item) {
 			return;
 		} else {
 			image = "http://cf2.imgobject.com/t/p/w500" + obj.results[0].poster_path;
-			output(movie, image, last_item);
+			output(movie, image, like_count, last_item);
 		}
 	});
 };
