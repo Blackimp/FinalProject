@@ -176,3 +176,13 @@ div#content a:hover {
       border-top-right-radius:20px;
 }
 
+.pic_title {
+      text-align:center;
+      border:1px solid #fff;
+      width:300px;
+      color:#fff;
+      background-color:#3B5998;
+      border-top-left-radius: 20px;
+      border-top-right-radius:20px;
+}
+
