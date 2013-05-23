@@ -24,60 +24,59 @@ function getMyArtists() {
 function getFriendArtists() {
 	clearContentTable();
 
-	var query = 'SELECT books FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me())';
+	var query = 'SELECT music FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me())';
 	FB.api('fql', {
 		q : query
 	}, function(data) {
 		var obj = data.data;
-		var books_string = "";
-		var books_friend = "";
-		var books_all = new Array();
-		var book_counts = {};
-		var book_counts_sorted = [];
+		var artists_string = "";
+		var artists_friend = "";
+		var artists_all = new Array();
+		var artist_counts = {};
+		var artist_counts_sorted = [];
 
 		Object.keys(obj).forEach(function(key) {
 			// check if the user likes no movies
-			if (obj[key].books == "") {
+			if (obj[key].music == "") {
 				return;
 			} else {
-				books_string = obj[key].books;
+				artists_string = obj[key].music;
 
 				// splits the returned string into single movies
-				books_friend = books_string.split(', ');
+				artists_friend = artists_string.split(', ');
 
 				// append the friends movies to the array that should contain all movies
-				books_all.push.apply(books_all, books_friend);
+				artists_all.push.apply(artists_all, artists_friend);
 			}
 		});
 
 		// add a counter to the movies
-		for ( i = 0; i < books_all.length; i++) {
-			var count = book_counts[books_all[i]];
+		for ( i = 0; i < artists_all.length; i++) {
+			var count = artist_counts[artists_all[i]];
 			if (count != null) {
 				count++;
 			} else {
 				count = 1;
 			}
-			book_counts[books_all[i]] = count;
+			artist_counts[artists_all[i]] = count;
 		};
 
 		// sorts the movies after the count they have been liked
-		for (var book in book_counts) {
-			book_counts_sorted.push([book, book_counts[book]]);
+		for (var artist in artist_counts) {
+			artist_counts_sorted.push([artist, artist_counts[artist]]);
 		};
 
-		book_counts_sorted.sort(function(a, b) {
+		artist_counts_sorted.sort(function(a, b) {
 			return b[1] - a[1];
 		});
-
 		// take only the 20 most liked movies
-		var books_top20 = book_counts_sorted.slice(0, 20);
+		var artists_top20 = artist_counts_sorted.slice(0, 20);
 
-		for ( i = 0; i < books_top20.length; i++) {
-			if (i == books_top20.length - 1) {
-				getArtist(books_top20[i,i][0], 1, books_top20[i,i][1]);
+		for ( i = 0; i < artists_top20.length; i++) {
+			if (i == artists_top20.length - 1) {
+				getArtist(artists_top20[i,i][0], 1, artists_top20[i,i][1]);
 			} else {
-				getArtist(books_top20[i,i][0], 0, books_top20[i,i][1]);
+				getArtist(artists_top20[i,i][0], 0, artists_top20[i,i][1]);
 			}
 		};
 	});
@@ -98,6 +97,6 @@ function getArtist(artist, last_item, like_count) {
 			var tmp = obj.artistmatches.artist[0].image[3];
 			var image = tmp['#text'];
 			output(artist, image, last_item, like_count);
-		}
+		};
 	});
 };
