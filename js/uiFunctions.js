@@ -3,7 +3,7 @@ var pic_index = 0;
 var init_content_table = '<table><colgroup><col width="100"><col width="100"><col width="100"><col width="100"><col width="100"></colgroup>';
 var content_table = init_content_table;
 
-function output(movie, image, like_count, last_item) {
+function output(title, image,  last_item, like_count) {
 	if (pic_index == 0) {
 		content_table += "<tr>";
 	} else if (pic_index % 5 == 0) {
@@ -13,7 +13,7 @@ function output(movie, image, like_count, last_item) {
 	if(like_count != -1) {
 	      content_table += "<div class='like_count'>"+like_count + " likes</div>";
 	}
-	content_table += "<img src='" + image + "' alt='" + movie + "' onmouseover='showPic(\"" + image + "\");'></td>";
+	content_table += "<img src='" + image + "' alt='" + title + "' onmouseover='showPic(\"" + image + "\");'></td>";
 	if (last_item == 1) {
 		content_table += "</tr></table>";
 		document.getElementById('content').innerHTML = content_table;
