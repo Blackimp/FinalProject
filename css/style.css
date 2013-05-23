@@ -27,8 +27,8 @@ div#header {
   margin: 0px;
   height: 115px;
   width: 100%;
-  background-color: #ed9642;
-  color:#343434;
+  background-color: #3B5998;
+  color:#000;
   font-size:25px;
   font-weight:bold;
 }
@@ -87,12 +87,12 @@ div#content_wrapper {
 }
 
 #menu a:link {
-	color: #5393d5;
+	color: #3B5998;
 	text-decoration: none;
 }
 
 #menu a:visited {
-	color: #5393d5;
+	color: #3B5998;
 	text-decoration: none;
 }
 
