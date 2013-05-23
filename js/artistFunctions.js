@@ -21,8 +21,66 @@ function getMyArtists() {
 	});
 };
 
-function getFriendArtists(){
-	// has to be implemented
+function getFriendArtists() {
+	clearContentTable();
+
+	var query = 'SELECT books FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me())';
+	FB.api('fql', {
+		q : query
+	}, function(data) {
+		var obj = data.data;
+		var books_string = "";
+		var books_friend = "";
+		var books_all = new Array();
+		var book_counts = {};
+		var book_counts_sorted = [];
+
+		Object.keys(obj).forEach(function(key) {
+			// check if the user likes no movies
+			if (obj[key].books == "") {
+				return;
+			} else {
+				books_string = obj[key].books;
+
+				// splits the returned string into single movies
+				books_friend = books_string.split(', ');
+
+				// append the friends movies to the array that should contain all movies
+				books_all.push.apply(books_all, books_friend);
+			}
+		});
+
+		// add a counter to the movies
+		for ( i = 0; i < books_all.length; i++) {
+			var count = book_counts[books_all[i]];
+			if (count != null) {
+				count++;
+			} else {
+				count = 1;
+			}
+			book_counts[books_all[i]] = count;
+		};
+
+		// sorts the movies after the count they have been liked
+		for (var book in book_counts) {
+			book_counts_sorted.push([book, book_counts[book]]);
+		};
+
+		book_counts_sorted.sort(function(a, b) {
+			return b[1] - a[1];
+		});
+
+		// take only the 20 most liked movies
+		var books_top20 = book_counts_sorted.slice(0, 20);
+
+		for ( i = 0; i < books_top20.length; i++) {
+			if (i == books_top20.length - 1) {
+				getArtist(books_top20[i,i][0], 1, books_top20[i,i][1]);
+			} else {
+				getArtist(books_top20[i,i][0], 0, books_top20[i,i][1]);
+			}
+		};
+	});
 };
 
 function getArtist(artist, last_item, like_count) {

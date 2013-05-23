@@ -24,7 +24,7 @@ function getMyMovies() {
 function getFriendMovies() {
 	clearContentTable();
 
-	var query = 'SELECT movies, name FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me())';
+	var query = 'SELECT movies FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me())';
 	FB.api('fql', {
 		q : query
 	}, function(data) {
