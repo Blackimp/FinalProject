@@ -1,6 +1,7 @@
 var image = '';
 var pic_index = 0;
 var init_content_table = '<table><colgroup><col width="100"><col width="100"><col width="100"><col width="100"><col width="100"></colgroup>';
+var no_content_table = '<div>No data available</div>';
 var content_table = init_content_table;
 
 function output(title, image,  last_item, like_count) {
