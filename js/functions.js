@@ -44,7 +44,6 @@ function facebookLogin() {
 };
 
 function getMyMovies() {
-	//getArtist("Jan Delay");
 	clearContentTable();
 
 	var query = 'SELECT movies FROM user WHERE uid = me()';
@@ -129,29 +128,6 @@ function getFriendMovies() {
 	});
 };
 
-function getMyBooks() {
-	clearContentTable();
-
-	var query = 'SELECT books FROM user WHERE uid = me()';
-	// call the Facebook API using the fql
-	FB.api('fql', {
-		q : query
-	}, function(data) {
-		var obj = data.data;
-		var books_string = obj[0].books;
-
-		var books = books_string.split(', ');
-
-		for (var i = 0; i < books.length; i++) {
-			if (i == books.length - 1) {
-				getBookCover(books[i], 1);
-			} else {
-				getBookCover(books[i], 0);
-			}
-		};
-	});
-};
-
 function output(movie, image, last_item) {
 	if (pic_index == 0) {
 		content_table += "<tr>";
@@ -179,22 +155,6 @@ function getMovieCover(movie, last_item) {
 			image = "http://cf2.imgobject.com/t/p/w500" + obj.results[0].poster_path;
 			output(movie, image, last_item);
 		}
-	});
-};
-
-function getBookCover(book, last_item){
-	// has to be implemented	
-};
-
-function getArtist(artist){
-	var url = "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + artist + "&api_key=b15fbe5f05f68e2b62bbbe3f4242c303&format=json";
-	
-	$.getJSON(url, function(data){
-		var obj = data.results;
-		// here is a problem with the JSON response, because a # is in the element tag before "text"
-		var image = obj.artistmatches.artist[0].image[2];
-		
-		console.log(JSON.stringify(image));
 	});
 };
 
