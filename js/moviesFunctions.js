@@ -8,6 +8,10 @@ function getMyMovies() {
 	}, function(data) {
 		var obj = data.data;
 		var movies_string = obj[0].movies;
+		if(movies_string == "") {
+                  document.getElementById('content').innerHTML = no_content_table;
+                  return;
+            }
 
 		var movies = movies_string.split(', ');
 
@@ -24,7 +28,7 @@ function getMyMovies() {
 function getFriendMovies() {
 	clearContentTable();
 
-	var query = 'SELECT movies, name FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me())';
+	var query = 'SELECT movies FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me())';
 	FB.api('fql', {
 		q : query
 	}, function(data) {
