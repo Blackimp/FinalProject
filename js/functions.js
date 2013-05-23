@@ -2,7 +2,6 @@ var image = "";
 var pic_index = 0;
 var content_table = '<table>';
 
-
 // setup the facebook application and load the facebook SDK
 function facebookLogin() {
 	// initialize
@@ -45,7 +44,8 @@ function facebookLogin() {
 };
 
 function getMyMovies() {
-      clearContentTable();
+	//getArtist("Jan Delay");
+	clearContentTable();
 
 	var query = 'SELECT movies FROM user WHERE uid = me()';
 	// call the Facebook API using the fql
@@ -68,8 +68,8 @@ function getMyMovies() {
 };
 
 function getFriendMovies() {
-      clearContentTable();
-      
+	clearContentTable();
+
 	var query = 'SELECT movies, name FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me())';
 	FB.api('fql', {
 		q : query
@@ -129,13 +129,36 @@ function getFriendMovies() {
 	});
 };
 
+function getMyBooks() {
+	clearContentTable();
+
+	var query = 'SELECT books FROM user WHERE uid = me()';
+	// call the Facebook API using the fql
+	FB.api('fql', {
+		q : query
+	}, function(data) {
+		var obj = data.data;
+		var books_string = obj[0].books;
+
+		var books = books_string.split(', ');
+
+		for (var i = 0; i < books.length; i++) {
+			if (i == books.length - 1) {
+				getBookCover(books[i], 1);
+			} else {
+				getBookCover(books[i], 0);
+			}
+		};
+	});
+};
+
 function output(movie, image, last_item) {
 	if (pic_index == 0) {
 		content_table += "<tr>";
 	} else if (pic_index % 5 == 0) {
 		content_table += "</tr><tr>";
 	}
-	content_table += "<td><img src='" + image + "' alt='" + movie + "' onmouseover='showPic(\""+image+"\");'></td>";
+	content_table += "<td><img src='" + image + "' alt='" + movie + "' onmouseover='showPic(\"" + image + "\");'></td>";
 	if (last_item == 1) {
 		content_table += "</tr></table>";
 		document.getElementById('content').innerHTML = content_table;
@@ -159,12 +182,28 @@ function getMovieCover(movie, last_item) {
 	});
 };
 
+function getBookCover(book, last_item){
+	// has to be implemented	
+};
+
+function getArtist(artist){
+	var url = "http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=" + artist + "&api_key=b15fbe5f05f68e2b62bbbe3f4242c303&format=json";
+	
+	$.getJSON(url, function(data){
+		var obj = data.results;
+		// here is a problem with the JSON response, because a # is in the element tag before "text"
+		var image = obj.artistmatches.artist[0].image[2];
+		
+		console.log(JSON.stringify(image));
+	});
+};
+
 function clearContentTable() {
-      pic_index = 0;
-      document.getElementById("content").innerHTML = '';
-      content_table = '<table>';
+	pic_index = 0;
+	document.getElementById("content").innerHTML = '';
+	content_table = '<table>';
 }
 
 function showPic(image) {
-      document.getElementById('pic_screen').innerHTML = "<img src="+image+">";
+	document.getElementById('pic_screen').innerHTML = "<img src=" + image + ">";
 }
