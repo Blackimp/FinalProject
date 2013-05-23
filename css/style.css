@@ -140,6 +140,7 @@ div#content a:hover {
 }
 
 #content table img {
+      height:150px;
       width:100px;
       display:block;
 }
