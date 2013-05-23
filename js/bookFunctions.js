@@ -10,7 +10,6 @@ function getMyBooks() {
 		var books_string = obj[0].books;
 
 		var books = books_string.split(', ');
-		console.log(books);
 		for (var i = 0; i < books.length; i++) {
 			if (i == books.length - 1) {
 				getBookCover(books[i], 1);
@@ -26,14 +25,14 @@ function getFriendBooks(){
 };
 
 function getBookCover(book, last_item) {
-	var url = "https://www.googleapis.com/books/v1/volumes?q=name:" + book;
+	var url = "https://www.googleapis.com/books/v1/volumes?q=name:" + book + "&key=AIzaSyBnae4sYFxP0v1Mb3jTM517j5i0nyloGbA";
 
 	$.getJSON(url, function(data) {
 		var obj = data;
 		if (obj.totalitems == 0){
 			return;
 		};
-		var image = obj.items[0].volumeinfo.imageLinks.thumbnail;
+		var image = obj.items[0].volumeInfo.imageLinks.thumbnail;
 		console.log(image);
 		output(book, image, last_item);
 	});
