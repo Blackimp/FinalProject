@@ -11,15 +11,14 @@ function output(title, image,  last_item, like_count) {
 		content_table += "</tr><tr>";
 	}
 	content_table += "<td>";
+	
 	if(like_count != -1) {
 	      content_table += "<div class='like_count'>"+like_count + " likes</div>";
 	}
+	
 	content_table += "<img src='" + image + "' alt='" + title + "' onmouseover='showPic(\"" + title + "\",\"" + image + "\");'></td>";
 	document.getElementById('content').innerHTML = content_table + "</tr></table>";
-	if (last_item == 1) {
-		content_table += "</tr></table>";
-		document.getElementById('content').innerHTML = content_table;
-	}
+
 	pic_index++;
 };
 
@@ -27,6 +26,7 @@ function clearContentTable() {
 	pic_index = 0;
 	document.getElementById("content").innerHTML = '';
 	content_table = init_content_table;
+	document.getElementById("pic_screen").innerHTML = '';
 }
 
 function showPic(title,image) {
