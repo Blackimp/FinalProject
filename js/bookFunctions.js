@@ -86,7 +86,7 @@ function getFriendBooks() {
 };
 
 function getBookCover(book, last_item, like_count) {
-	var url = "https://www.googleapis.com/books/v1/volumes?q=name:" + book + "&key=AIzaSyBnae4sYFxP0v1Mb3jTM517j5i0nyloGbA";
+	var url = "https://www.googleapis.com/books/v1/volumes?q=" + book + "&key=AIzaSyBnae4sYFxP0v1Mb3jTM517j5i0nyloGbA";
 
 	$.getJSON(url, function(data) {
 		var obj = data;

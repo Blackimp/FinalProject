@@ -57,7 +57,7 @@ div#content_wrapper {
   min-height: 100%;
   margin-left:auto;
   margin-right:auto;
-  margin-top:20px;
+  margin-top:0px;
   padding: 20px;
 }
 
@@ -185,4 +185,5 @@ div#content a:hover {
       border-top-left-radius: 20px;
       border-top-right-radius:20px;
 }
+
 
