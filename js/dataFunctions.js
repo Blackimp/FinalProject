@@ -17,7 +17,7 @@ function getMyData() {
 };
 
 function getFriendsData() {
-	var query = 'SELECT movies, music, books FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me())';
+	var query = 'SELECT name, movies, music, books FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1=me())';
 	FB.api('fql', {
 		q : query
 	}, function(data) {
@@ -27,6 +27,9 @@ function getFriendsData() {
 		var books_friend = "";
 
 		Object.keys(obj).forEach(function(key) {
+
+			friendData.names[key] = obj[key].name;
+
 			// check if the user likes no movies
 			if (obj[key].movies == "") {
 				return;
@@ -36,6 +39,9 @@ function getFriendsData() {
 
 				// append the friends movies to the array that should contain all movies
 				friendsMovies.push.apply(friendsMovies, movies_friend);
+
+				// adds the movies to a specific user
+				friendData.movies[key] = movies_friend;
 			};
 
 			// check if the user likes no music
@@ -174,4 +180,32 @@ function getMyFriendsCovers(type) {
 		};
 	}
 	;
+};
+
+// this function generates a score for users. the score says how much the friend fits to your taste
+// this is according to chapter two: recommending items
+function recommendItems() {
+	var friendsScore = {
+		names : [],
+		score : []
+	};
+	var result = "";
+
+	for ( i = 0; i < friendData.names.length; i++) {
+		if (friendData.movies[i] == undefined) {
+			continue;
+		} else {
+				console.log(friendData.names[i]);
+			for ( z = 0; z < friendData.movies[i].length; z++) {
+				result = $.inArray(friendData.movies[i][z], myMovies);
+				if (result == -1){
+					continue;
+				} else{
+					friendsScore.names[i] = friendData.names[i];
+					friendsScore.score[i][0] = friendsScore.score[i][0] + 1;
+				};
+			};
+			console.log(friendsScore.names[i] + ": " + friendsScore.score[i]);
+		};
+	};
 };
