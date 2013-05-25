@@ -8,9 +8,8 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 		<script src="js/uiFunctions.js"></script>
-		<script src="js/artistFunctions.js"></script>
-		<script src="js/bookFunctions.js"></script>
-		<script src="js/moviesFunctions.js"></script>
+		<script src="js/apiFunctions.js"></script>
+		<script src="js/dataFunctions.js"></script>
 	</head>
 	<body>
 		<div id="fb-root"></div>
@@ -37,10 +36,10 @@
 							<a href="index.html">recommended movies</a>
 						</li>
 						<li>
-							<a href="javascript:getMyMovies();">movies I like</a>
+							<a href='javascript:getMyCovers("movies");'>movies I like</a>
 						</li>
 						<li>
-							<a href="javascript:getFriendMovies();">movies my friends like</a>
+							<a href='javascript:getMyFriendsCovers("movies");'>movies my friends like</a>
 						</li>
 					</ul>
 					
@@ -52,10 +51,10 @@
 							<a href="index.html">recommended artists</a>
 						</li>
 						<li>
-							<a href="javascript:getMyArtists();">artists I like</a>
+							<a href='javascript:getMyCovers("music");'>artists I like</a>
 						</li>
 						<li>
-							<a href="javascript:getFriendArtists();">artists my friends like</a>
+							<a href='javascript:getMyFriendsCovers("music");'>artists my friends like</a>
 						</li>
 					</ul>
 					
@@ -67,10 +66,10 @@
 							<a href="index.html">recommended books</a>
 						</li>
 						<li>
-							<a href="javascript:getMyBooks();">books I like</a>
+							<a href='javascript:getMyCovers("books");'>books I like</a>
 						</li>
 						<li>
-							<a href="javascript:getFriendBooks();">books my friends like</a>
+							<a href='javascript:getMyFriendsCovers("books");'>books my friends like</a>
 						</li>
 					</ul>
 				</div>
