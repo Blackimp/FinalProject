@@ -169,10 +169,9 @@ function getMyFriendsCovers(type) {
 			if (i == data_top20.length - 1) {
 				getBookCover(data_top20[i,i][0], 1, data_top20[i,i][1]);
 			} else {
-				getMusic(data_top20[i,i][0], 0, data_top20[i,i][1]);
+				getBookCover(data_top20[i,i][0], 0, data_top20[i,i][1]);
 			}
 		};
 	}
 	;
-
 };

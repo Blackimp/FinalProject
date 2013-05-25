@@ -9,8 +9,8 @@ function getMovieCover(movie, last_item, like_count) {
 			return;
 		} else {
 			image = "http://cf2.imgobject.com/t/p/w500" + obj.results[0].poster_path;
-			output(movie, image, last_item, like_count);
 		}
+		output(movie, image, last_item, like_count);
 	});
 };
 
