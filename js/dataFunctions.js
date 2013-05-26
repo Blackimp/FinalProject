@@ -257,7 +257,11 @@ function recommendItems(type) {
 
 			result = $.inArray(recommended_items.items[i], friendsScore.items[z]);
 			if (result != -1) {
+				// das läuft für jeden Film irgendwie mehrmals durch, am Ende kommt aber die richtige Score raus, vllt kannst du dir das erklären
+				//console.log("Item: " + recommended_items.items[i] + " Score: " + recommended_items.scores[i]);
+				//console.log(friendsScore.names[z] + " Score: " + friendsScore.score[z]);
 				recommended_items.scores[i] = recommended_items.scores[i] + friendsScore.score[z];
+				//console.log("Item: " + recommended_items.items[i] + " Score: " + recommended_items.scores[i]);
 			};
 		};
 	};
