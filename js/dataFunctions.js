@@ -185,24 +185,39 @@ function getMyFriendsCovers(type) {
 // this function generates a score for users. the score says how much the friend fits to your taste
 // this is according to chapter two: recommending items
 function recommendItems() {
+	
+	clearContentTable();
+	
 	var friendsScore = {
 		names : [],
+		movies : [],
 		score : []
 	};
-	var friendsScore_modified = [];
-	var friendsScore_sorted = [];
 	var result = "";
 	var score = 0;
+	var unseen_movies = {
+		movies : [],
+		scores : []
+	};
 	var c = 0;
+	var d = 0;
+	var unseen_movies_scored = {
+		movies : [],
+		scores : []
+	};
+	var unseen_movies_scored_modified = [];
+	var unseen_movies_scored_sorted = [];
 
 	for ( i = 0; i < friendData.names.length; i++) {
 		if (friendData.movies[i] != undefined) {
 
 			for ( z = 0; z < friendData.movies[i].length; z++) {
 				result = $.inArray(friendData.movies[i][z], myMovies);
-
-				if (result != -1) {
-
+				if (result == -1) {
+					unseen_movies.movies.push(friendData.movies[i][z]);
+					unseen_movies.scores[d] = 0;
+					d++;
+				} else {
 					score = score + 1;
 
 					friendsScore.names[c] = friendData.names[i];
@@ -210,20 +225,49 @@ function recommendItems() {
 				};
 			};
 			if (friendsScore.score[c] > 0) {
+				friendsScore.movies[c] = friendData.movies[i];
 				c++;
 			};
 			score = 0;
 		};
 	};
-	for ( i = 0; i < friendsScore.names.length; i++) {
-		friendsScore_modified[friendsScore.names[i]] = friendsScore.score[i];
+
+	// example calls: console.log(friendsScore.names[0] + " " + friendsScore.score[0] + " " + friendsScore.movies[0]);
+
+	for ( i = 0; i < unseen_movies.movies.length; i++) {
+		for ( z = 0; z < friendsScore.names.length; z++) {
+
+			result = $.inArray(unseen_movies.movies[i], friendsScore.movies[z]);
+			if (result != -1) {
+				unseen_movies.scores[i] = unseen_movies.scores[i] + friendsScore.score[z];
+			};
+		};
 	};
-	for (var score in friendsScore_modified) {
-		friendsScore_sorted.push([score, friendsScore_modified[score]]);
+
+	for ( i = 0; i < unseen_movies.movies.length; i++) {
+		unseen_movies_scored_modified[unseen_movies.movies[i]] = unseen_movies.scores[i];
 	};
-	
-	friendsScore_sorted.sort(function(a, b) {
-	 return b[1] - a[1];
-	 });
-	console.log(friendsScore_sorted);
+	for (var score in unseen_movies_scored_modified) {
+		unseen_movies_scored_sorted.push([score, unseen_movies_scored_modified[score]]);
+	};
+
+	unseen_movies_scored_sorted.sort(function(a, b) {
+		return b[1] - a[1];
+	});
+
+	// take only the 20 most scored
+	var data_top20 = unseen_movies_scored_sorted.slice(0, 20);
+
+	console.log(data_top20);
+	for ( i = 0; i < data_top20.length; i++) {
+		
+			console.log(data_top20[i][0] + " Score: " + data_top20[i][1]);
+		if (i == data_top20.length - 1) {
+			getMovieCover(data_top20[i][0], 1, data_top20[i][1]);
+		} else {
+			getMovieCover(data_top20[i][0], 0, data_top20[i][1]);
+		};
+	};
+
 };
+
