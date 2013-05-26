@@ -53,6 +53,9 @@ function getFriendsData() {
 
 				// append the friends movies to the array that should contain all artists
 				friendsMusic.push.apply(friendsMusic, music_friend);
+
+				// adds the movies to a specific user
+				friendData.music[key] = music_friend;
 			};
 
 			// check if the user likes no books
@@ -64,6 +67,9 @@ function getFriendsData() {
 
 				// append the friends movies to the array that should contain all books
 				friendsBooks.push.apply(friendsBooks, books_friend);
+
+				// adds the movies to a specific user
+				friendData.books[key] = books_friend;
 			}
 		});
 	});
@@ -184,38 +190,50 @@ function getMyFriendsCovers(type) {
 
 // this function generates a score for users. the score says how much the friend fits to your taste
 // this is according to chapter two: recommending items
-function recommendItems() {
-	
+function recommendItems(type) {
+
 	clearContentTable();
-	
+
 	var friendsScore = {
 		names : [],
-		movies : [],
+		items : [],
 		score : []
 	};
 	var result = "";
 	var score = 0;
-	var unseen_movies = {
-		movies : [],
+	var recommended_items = {
+		items : [],
 		scores : []
 	};
 	var c = 0;
 	var d = 0;
-	var unseen_movies_scored = {
-		movies : [],
-		scores : []
-	};
-	var unseen_movies_scored_modified = [];
-	var unseen_movies_scored_sorted = [];
+	var recommended_items_modified = [];
+	var recommended_items_sorted = [];
+	var friendItems = new Array();
+	if (type == "movies") {
+		friendItems = friendData.movies;
+	} else if (type == "music") {
+		friendItems = friendData.music;
+	} else if (type == "books") {
+		friendItems = friendData.books;
+	}
+	;
 
 	for ( i = 0; i < friendData.names.length; i++) {
-		if (friendData.movies[i] != undefined) {
+		if (friendItems[i] != undefined) {
 
-			for ( z = 0; z < friendData.movies[i].length; z++) {
-				result = $.inArray(friendData.movies[i][z], myMovies);
+			for ( z = 0; z < friendItems[i].length; z++) {
+				if (type == "movies") {
+					result = $.inArray(friendItems[i][z], myMovies);
+				} else if (type == "music") {
+					result = $.inArray(friendItems[i][z], myMusic);
+				} else if (type == "books") {
+					result = $.inArray(friendItems[i][z], myBooks);
+				}
+				;
 				if (result == -1) {
-					unseen_movies.movies.push(friendData.movies[i][z]);
-					unseen_movies.scores[d] = 0;
+					recommended_items.items.push(friendItems[i][z]);
+					recommended_items.scores[d] = 0;
 					d++;
 				} else {
 					score = score + 1;
@@ -225,49 +243,62 @@ function recommendItems() {
 				};
 			};
 			if (friendsScore.score[c] > 0) {
-				friendsScore.movies[c] = friendData.movies[i];
+				friendsScore.items[c] = friendItems[i];
 				c++;
 			};
 			score = 0;
 		};
 	};
 
-	// example calls: console.log(friendsScore.names[0] + " " + friendsScore.score[0] + " " + friendsScore.movies[0]);
+	// example calls: console.log(friendsScore.names[0] + " " + friendsScore.score[0] + " " + friendsScore.items[0]);
 
-	for ( i = 0; i < unseen_movies.movies.length; i++) {
+	for ( i = 0; i < recommended_items.items.length; i++) {
 		for ( z = 0; z < friendsScore.names.length; z++) {
 
-			result = $.inArray(unseen_movies.movies[i], friendsScore.movies[z]);
+			result = $.inArray(recommended_items.items[i], friendsScore.items[z]);
 			if (result != -1) {
-				unseen_movies.scores[i] = unseen_movies.scores[i] + friendsScore.score[z];
+				recommended_items.scores[i] = recommended_items.scores[i] + friendsScore.score[z];
 			};
 		};
 	};
 
-	for ( i = 0; i < unseen_movies.movies.length; i++) {
-		unseen_movies_scored_modified[unseen_movies.movies[i]] = unseen_movies.scores[i];
+	for ( i = 0; i < recommended_items.items.length; i++) {
+		recommended_items_modified[recommended_items.items[i]] = recommended_items.scores[i];
 	};
-	for (var score in unseen_movies_scored_modified) {
-		unseen_movies_scored_sorted.push([score, unseen_movies_scored_modified[score]]);
+	for (var score in recommended_items_modified) {
+		recommended_items_sorted.push([score, recommended_items_modified[score]]);
 	};
 
-	unseen_movies_scored_sorted.sort(function(a, b) {
+	recommended_items_sorted.sort(function(a, b) {
 		return b[1] - a[1];
 	});
-
+	
 	// take only the 20 most scored
-	var data_top20 = unseen_movies_scored_sorted.slice(0, 20);
+	var data_top20 = recommended_items_sorted.slice(0, 20);
 
-	console.log(data_top20);
 	for ( i = 0; i < data_top20.length; i++) {
-		
-			console.log(data_top20[i][0] + " Score: " + data_top20[i][1]);
-		if (i == data_top20.length - 1) {
-			getMovieCover(data_top20[i][0], 1, data_top20[i][1]);
-		} else {
-			getMovieCover(data_top20[i][0], 0, data_top20[i][1]);
-		};
-	};
 
+		console.log(data_top20[i][0] + " Score: " + data_top20[i][1]);
+		if (type == "movies") {
+			if (i == data_top20.length - 1) {
+				getMovieCover(data_top20[i][0], 1, data_top20[i][1]);
+			} else {
+				getMovieCover(data_top20[i][0], 0, data_top20[i][1]);
+			};
+		} else if (type == "music") {
+			if (i == data_top20.length - 1) {
+				getMusic(data_top20[i][0], 1, data_top20[i][1]);
+			} else {
+				getMusic(data_top20[i][0], 0, data_top20[i][1]);
+			};
+		} else if (type == "books") {
+			if (i == data_top20.length - 1) {
+				getBookCover(data_top20[i][0], 1, data_top20[i][1]);
+			} else {
+				getBookCover(data_top20[i][0], 0, data_top20[i][1]);
+			};
+		}
+		;
+	};
 };
 
