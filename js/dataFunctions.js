@@ -189,23 +189,41 @@ function recommendItems() {
 		names : [],
 		score : []
 	};
+	var friendsScore_modified = [];
+	var friendsScore_sorted = [];
 	var result = "";
+	var score = 0;
+	var c = 0;
 
 	for ( i = 0; i < friendData.names.length; i++) {
-		if (friendData.movies[i] == undefined) {
-			continue;
-		} else {
-				console.log(friendData.names[i]);
+		if (friendData.movies[i] != undefined) {
+
 			for ( z = 0; z < friendData.movies[i].length; z++) {
 				result = $.inArray(friendData.movies[i][z], myMovies);
-				if (result == -1){
-					continue;
-				} else{
-					friendsScore.names[i] = friendData.names[i];
-					friendsScore.score[i][0] = friendsScore.score[i][0] + 1;
+
+				if (result != -1) {
+
+					score = score + 1;
+
+					friendsScore.names[c] = friendData.names[i];
+					friendsScore.score[c] = score;
 				};
 			};
-			console.log(friendsScore.names[i] + ": " + friendsScore.score[i]);
+			if (friendsScore.score[c] > 0) {
+				c++;
+			};
+			score = 0;
 		};
 	};
+	for ( i = 0; i < friendsScore.names.length; i++) {
+		friendsScore_modified[friendsScore.names[i]] = friendsScore.score[i];
+	};
+	for (var score in friendsScore_modified) {
+		friendsScore_sorted.push([score, friendsScore_modified[score]]);
+	};
+	
+	friendsScore_sorted.sort(function(a, b) {
+	 return b[1] - a[1];
+	 });
+	console.log(friendsScore_sorted);
 };
