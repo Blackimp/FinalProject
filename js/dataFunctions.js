@@ -72,6 +72,7 @@ function getFriendsData() {
 				friendData.books[key] = books_friend;
 			}
 		});
+            recommendItems("movies");
 	});
 };
 
@@ -123,6 +124,7 @@ function getMyCovers(type) {
 
 function getMyFriendsCovers(type) {
 	clearContentTable();
+	counter_string = "likes";
 
 	var all = new Array();
 	var friendsData_with_counts = {};
@@ -193,6 +195,7 @@ function getMyFriendsCovers(type) {
 function recommendItems(type) {
 
 	clearContentTable();
+	counter_string = 'points';
 
 	var friendsScore = {
 		names : [],
@@ -282,7 +285,7 @@ function recommendItems(type) {
 
 	for ( i = 0; i < data_top20.length; i++) {
 
-		console.log(data_top20[i][0] + " Score: " + data_top20[i][1]);
+		//console.log(data_top20[i][0] + " Score: " + data_top20[i][1]);
 		if (type == "movies") {
 			if (i == data_top20.length - 1) {
 				getMovieCover(data_top20[i][0], 1, data_top20[i][1]);

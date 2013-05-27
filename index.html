@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>frs</title>
+		<title>facebook recommendation service</title>
 		<link rel="stylesheet" href="css/style.css"/>
 		<link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.3.custom.min.css"/>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -33,13 +33,13 @@
 							MOVIES
 						</li>
 						<li>
-							<a href='javascript:recommendItems("movies")'>recommended movies</a>
+							<a href='javascript:recommendItems("movies"); document.getElementById("current_content").innerHTML = "recommended movies";'>recommended movies</a>
 						</li>
 						<li>
-							<a href='javascript:getMyCovers("movies");'>movies I like</a>
+							<a href='javascript:getMyCovers("movies"); document.getElementById("current_content").innerHTML = "movies I like";'>movies I like</a>
 						</li>
 						<li>
-							<a href='javascript:getMyFriendsCovers("movies");'>movies my friends like</a>
+							<a href='javascript:getMyFriendsCovers("movies"); document.getElementById("current_content").innerHTML = "movies my friends like";'>movies my friends like</a>
 						</li>
 					</ul>
 
@@ -48,13 +48,13 @@
 							MUSIC
 						</li>
 						<li>
-							<a href='javascript:recommendItems("music")'>recommended artists</a>
+							<a href='javascript:recommendItems("music"); document.getElementById("current_content").innerHTML = "recommended artists";'>recommended artists</a>
 						</li>
 						<li>
-							<a href='javascript:getMyCovers("music");'>artists I like</a>
+							<a href='javascript:getMyCovers("music"); document.getElementById("current_content").innerHTML = "artists I like";'>artists I like</a>
 						</li>
 						<li>
-							<a href='javascript:getMyFriendsCovers("music");'>artists my friends like</a>
+							<a href='javascript:getMyFriendsCovers("music"); document.getElementById("current_content").innerHTML = "artists my friends like";'>artists my friends like</a>
 						</li>
 					</ul>
 
@@ -63,29 +63,24 @@
 							BOOKS
 						</li>
 						<li>
-							<a href='javascript:recommendItems("books")'>recommended books</a>
+							<a href='javascript:recommendItems("books"); document.getElementById("current_content").innerHTML = "recommended books";'>recommended books</a>
 						</li>
 						<li>
-							<a href='javascript:getMyCovers("books");'>books I like</a>
+							<a href='javascript:getMyCovers("books"); document.getElementById("current_content").innerHTML = "books I like";'>books I like</a>
 						</li>
 						<li>
-							<a href='javascript:getMyFriendsCovers("books");'>books my friends like</a>
+							<a href='javascript:getMyFriendsCovers("books"); document.getElementById("current_content").innerHTML = "books my friends like";'>books my friends like</a>
 						</li>
 					</ul>
 				</div>
-
 				<div id="content">
 
 				</div>
-
+                        <div id="current_content">recommended movies</div>
 				<div id="pic_screen"></div>
 			</div>
 		</div>
 	</body>
 </html>
 
-div>
-		</div>
-	</body>
-</html>
-                             
+

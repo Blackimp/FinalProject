@@ -107,10 +107,11 @@ div#content_wrapper {
 #content {
       float:left;
       width:530px;
-      height:450px;
+      height:500px;
       margin-left:20px;
       margin-right:20px; 
       overflow:scroll;
+      text-align:center;
 }
 
 div#content a {
@@ -146,6 +147,15 @@ div#content a:hover {
 
 #content table td {
       text-align:center;
+}
+
+#current_content {
+      width:300px;
+      height:30px;
+      float:right;
+      color:#343434;
+      font-size:150%;
+      text-transform:uppercase;
 }
 
 #pic_screen {
