@@ -276,7 +276,7 @@ function recommendItems(type) {
 	recommended_items_sorted.sort(function(a, b) {
 		return b[1] - a[1];
 	});
-	
+
 	// take only the 20 most scored
 	var data_top20 = recommended_items_sorted.slice(0, 20);
 
