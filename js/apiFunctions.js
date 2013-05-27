@@ -66,10 +66,7 @@ function facebookLogin() {
 		FB.Event.subscribe('auth.authResponseChange', function(response) {
 			if (response.status === 'connected') {
 				$('#facebookButton').hide();
-<<<<<<< HEAD
-=======
 				document.getElementById('content').innerHTML = "<h2>RETRIEVING DATA</h2><br /><img src='img/loader.gif' />"; 
->>>>>>> kevin
 				getMyData();
 				getFriendsData();
 			} else if (response.status === 'not_authorized') {
