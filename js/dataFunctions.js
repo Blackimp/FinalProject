@@ -72,6 +72,10 @@ function getFriendsData() {
 				friendData.books[key] = books_friend;
 			}
 		});
+<<<<<<< HEAD
+=======
+            recommendItems("movies");
+>>>>>>> kevin
 	});
 };
 
@@ -123,6 +127,10 @@ function getMyCovers(type) {
 
 function getMyFriendsCovers(type) {
 	clearContentTable();
+<<<<<<< HEAD
+=======
+	counter_string = "likes";
+>>>>>>> kevin
 
 	var all = new Array();
 	var friendsData_with_counts = {};
@@ -193,6 +201,10 @@ function getMyFriendsCovers(type) {
 function recommendItems(type) {
 
 	clearContentTable();
+<<<<<<< HEAD
+=======
+	counter_string = 'points';
+>>>>>>> kevin
 
 	var friendsScore = {
 		names : [],
@@ -276,13 +288,21 @@ function recommendItems(type) {
 	recommended_items_sorted.sort(function(a, b) {
 		return b[1] - a[1];
 	});
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> kevin
 	// take only the 20 most scored
 	var data_top20 = recommended_items_sorted.slice(0, 20);
 
 	for ( i = 0; i < data_top20.length; i++) {
 
+<<<<<<< HEAD
 		console.log(data_top20[i][0] + " Score: " + data_top20[i][1]);
+=======
+		//console.log(data_top20[i][0] + " Score: " + data_top20[i][1]);
+>>>>>>> kevin
 		if (type == "movies") {
 			if (i == data_top20.length - 1) {
 				getMovieCover(data_top20[i][0], 1, data_top20[i][1]);
