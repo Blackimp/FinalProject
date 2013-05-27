@@ -73,6 +73,7 @@ function getFriendsData() {
 			}
 		});
             recommendItems("movies");
+            document.getElementById('current_content').innerHTML = "recommended movies";
 	});
 };
 
