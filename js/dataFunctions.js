@@ -289,21 +289,21 @@ function recommendItems(type) {
 		//console.log(data_top20[i][0] + " Score: " + data_top20[i][1]);
 		if (type == "movies") {
 			if (i == data_top20.length - 1) {
-				getMovieCover(data_top20[i][0], 1, data_top20[i][1]);
+				getMovieCover(data_top20[i][0], data_top20[i][1]);
 			} else {
-				getMovieCover(data_top20[i][0], 0, data_top20[i][1]);
+				getMovieCover(data_top20[i][0], data_top20[i][1]);
 			};
 		} else if (type == "music") {
 			if (i == data_top20.length - 1) {
-				getMusic(data_top20[i][0], 1, data_top20[i][1]);
+				getMusic(data_top20[i][0], data_top20[i][1]);
 			} else {
-				getMusic(data_top20[i][0], 0, data_top20[i][1]);
+				getMusic(data_top20[i][0], data_top20[i][1]);
 			};
 		} else if (type == "books") {
 			if (i == data_top20.length - 1) {
-				getBookCover(data_top20[i][0], 1, data_top20[i][1]);
+				getBookCover(data_top20[i][0], data_top20[i][1]);
 			} else {
-				getBookCover(data_top20[i][0], 0, data_top20[i][1]);
+				getBookCover(data_top20[i][0], data_top20[i][1]);
 			};
 		}
 		;

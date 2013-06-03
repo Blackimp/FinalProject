@@ -19,11 +19,12 @@ var friendData = {
 	books : []
 };
 
+
 $(document).ready(function() {
 	facebookLogin();
 });
 
-function output(title, image, last_item, like_count) {
+function output(title, image, like_count) {
 	if (pic_index == 0) {
 		content_table += "<tr>";
 	} else if (pic_index % 5 == 0) {
@@ -51,5 +52,6 @@ function clearContentTable() {
 function showPic(title, image) {
 	var pic_string = '<div class="pic_title">' + title + '</div><img src=' + image + '>';
 	document.getElementById('pic_screen').innerHTML = pic_string;
+	
 }
 
