@@ -173,6 +173,17 @@ function recommendItems(type) {
 
 	clearContentTable();
 	counter_string = 'points';
+	
+	if(type == "movies" && myMovies[0] == ""){
+	      getMyFriendsCovers(type);
+	      return;
+	} else if (type == "music" && myMusic[0] == "") {
+	      getMyFriendsCovers(type);
+	      return;
+	} else if (type == "books" && myBooks[0] == "") {
+	      getMyFriendsCovers(type);
+	      return;
+	}
 
 	var friendsScore = {
 		names : [],
