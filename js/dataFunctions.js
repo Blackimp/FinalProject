@@ -87,11 +87,7 @@ function getMyCovers(type) {
 		};
 
 		for (var i = 0; i < myMovies.length; i++) {
-			if (i == myMovies.length - 1) {
-				getMovieCover(myMovies[i], 1, -1);
-			} else {
-				getMovieCover(myMovies[i], 0, -1);
-			}
+			getMovieCover(myMovies[i], -1);
 		};
 	} else if (type == "music") {
 		if (myMusic == "") {
@@ -100,11 +96,7 @@ function getMyCovers(type) {
 		};
 
 		for (var i = 0; i < myMusic.length; i++) {
-			if (i == myMusic.length - 1) {
-				getMusic(myMusic[i], 1, -1);
-			} else {
-				getMusic(myMusic[i], 0, -1);
-			}
+			getMusic(myMusic[i], -1);
 		};
 	} else if (type == "books") {
 		if (myBooks == "") {
@@ -113,11 +105,7 @@ function getMyCovers(type) {
 		};
 
 		for (var i = 0; i < myBooks.length; i++) {
-			if (i == myBooks.length - 1) {
-				getBookCover(myBooks[i], 1, -1);
-			} else {
-				getBookCover(myBooks[i], 0, -1);
-			}
+			getBookCover(myBooks[i], -1);
 		};
 	}
 	;
@@ -165,27 +153,15 @@ function getMyFriendsCovers(type) {
 
 	if (type == "movies") {
 		for ( i = 0; i < data_top20.length; i++) {
-			if (i == data_top20.length - 1) {
-				getMovieCover(data_top20[i,i][0], 1, data_top20[i,i][1]);
-			} else {
-				getMovieCover(data_top20[i,i][0], 0, data_top20[i,i][1]);
-			}
+			getMovieCover(data_top20[i,i][0], data_top20[i,i][1]);
 		};
 	} else if (type == "music") {
 		for ( i = 0; i < data_top20.length; i++) {
-			if (i == data_top20.length - 1) {
-				getMusic(data_top20[i,i][0], 1, data_top20[i,i][1]);
-			} else {
-				getMusic(data_top20[i,i][0], 0, data_top20[i,i][1]);
-			}
+			getMusic(data_top20[i,i][0], data_top20[i,i][1]);
 		};
 	} else if (type == "books") {
 		for ( i = 0; i < data_top20.length; i++) {
-			if (i == data_top20.length - 1) {
-				getBookCover(data_top20[i,i][0], 1, data_top20[i,i][1]);
-			} else {
-				getBookCover(data_top20[i,i][0], 0, data_top20[i,i][1]);
-			}
+			getBookCover(data_top20[i,i][0], data_top20[i,i][1]);
 		};
 	}
 	;
